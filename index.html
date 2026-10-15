@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#08070a">
+<title>NOIR ASIA — сопровождение премиум-класса · 24/7</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08070a; --bg2:#0d0c10; --panel:#100f14;
+  --line:rgba(255,255,255,.09);
+  --red:#e8102e; --red-hi:#ff3352; --gold:#d8a94e;
+  --txt:#f3eee8; --mut:#9a918a;
+  --disp:'Marcellus',serif; --body:'Manrope',sans-serif; --jp:'Noto Serif JP',serif;
+  --safe-b:env(safe-area-inset-bottom,0px); --safe-t:env(safe-area-inset-top,0px);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-padding-top:84px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{background:var(--bg);color:var(--txt);font:16px/1.6 var(--body);overflow-x:hidden;
+  padding-bottom:calc(74px + var(--safe-b));-webkit-font-smoothing:antialiased}
+body.lock{overflow:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(60% 40% at 80% -10%,rgba(232,16,46,.17),transparent 60%),
+             radial-gradient(40% 30% at 0% 110%,rgba(216,169,78,.06),transparent 60%)}
+body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),#7a0c1a);z-index:500}
+::selection{background:var(--red);color:#000}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none;touch-action:manipulation}
+button,input{font-family:inherit}button{cursor:pointer;touch-action:manipulation}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+section{position:relative;z-index:1;padding:72px 0;scroll-margin-top:80px}
+.jp{font-family:var(--jp);color:var(--red)}
+.noise{position:fixed;inset:0;z-index:400;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E")}
+
+/* 18+ */
+#gate{position:fixed;inset:0;z-index:300;background:#050507f2;display:flex;align-items:center;justify-content:center;
+  padding:calc(24px + var(--safe-t)) 20px calc(24px + var(--safe-b));transition:opacity .6s}
+#gate.out{opacity:0;pointer-events:none}
+.g-box{max-width:540px;width:100%;text-align:center;border:1px solid var(--line);background:var(--bg2);padding:44px 26px;position:relative}
+.g-box::before{content:'';position:absolute;inset:9px;border:1px solid rgba(232,16,46,.25);pointer-events:none}
+.g-seal{display:inline-grid;place-items:center;width:76px;height:76px;background:var(--red);color:#0b0b0d;
+  font:900 36px var(--jp);margin-bottom:22px;transform:rotate(-4deg);box-shadow:0 10px 34px rgba(232,16,46,.4)}
+.g-box h2{font:400 clamp(1.3rem,5vw,1.9rem) var(--disp);letter-spacing:.04em;margin-bottom:12px}
+.g-box p{color:var(--mut);font-size:14.5px;margin-bottom:26px}
+.g-btns{display:grid;gap:12px}
+.g-fine{font-size:11px!important;color:#5f5854!important;margin:18px 0 0!important}
+body.gated main,body.gated header,body.gated footer,body.gated #tabbar,body.gated #fab,body.gated #chat{filter:blur(18px) brightness(.5);pointer-events:none}
+
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:90;padding-top:var(--safe-t);
+  background:rgba(8,7,10,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:58px}
+.logo{font:400 15px var(--disp);letter-spacing:.3em}
+.logo b{color:var(--red);font-weight:400}.logo i{font-style:normal;color:var(--gold)}
+.nav-links{display:none;gap:28px;list-style:none}
+.nav-links a{font:700 11px var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--mut);transition:color .3s}
+.nav-links a:hover{color:var(--txt)}
+
+/* кнопки */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--red);color:#fff;border:0;
+  font:800 12px var(--body);letter-spacing:.16em;text-transform:uppercase;padding:16px 24px;min-height:48px;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%);transition:background .3s,transform .15s}
+.btn:active{transform:scale(.965)}
+.btn.ghost{background:transparent;border:1px solid var(--line);clip-path:none;color:var(--txt)}
+.btn.ghost:active{background:rgba(232,16,46,.1);border-color:var(--red)}
+.btn.small{padding:13px 18px;min-height:44px;font-size:11px;width:100%}
+
+/* hero */
+.hero{padding:calc(104px + var(--safe-t)) 0 40px;overflow:hidden}
+.sun{position:absolute;width:230px;height:230px;border-radius:50%;top:-30px;right:-70px;
+  background:radial-gradient(circle at 38% 38%,rgba(232,16,46,.5),rgba(232,16,46,.1) 62%,transparent 72%)}
+@media (prefers-reduced-motion:no-preference){.sun{animation:breathe 7s ease-in-out infinite}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.over{font:800 10px var(--body);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.over::before{content:'';width:30px;height:1px;background:var(--gold)}
+h1{font:400 clamp(2.2rem,9.5vw,5rem)/1.06 var(--disp);letter-spacing:.01em;text-transform:uppercase}
+h1 em{font-style:normal;color:var(--red)}
+.h-jp{font:900 13px var(--jp);color:var(--mut);letter-spacing:.4em;margin:16px 0}
+.h-sub{color:var(--mut);font-size:15px;margin-bottom:28px}
+.h-sub b{color:var(--txt)}
+.h-cta{display:grid;gap:12px}
+.hero-r{margin-top:36px}
+.frame{position:relative;padding:9px;border:1px solid var(--line);background:var(--bg2)}
+.frame figcaption{font:700 9.5px var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--mut);padding:12px 3px 3px;display:flex;justify-content:space-between;gap:10px}
+.frame figcaption b{color:var(--red)}
+.kb{overflow:hidden}
+.kb img{width:100%;aspect-ratio:4/4.4;object-fit:cover;filter:contrast(1.08)}
+@media (prefers-reduced-motion:no-preference){.kb img{animation:kenburns 16s ease-in-out infinite alternate}}
+@keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.13) translate(2%,-2%)}}
+.seal{position:absolute;top:-16px;left:-8px;width:56px;height:56px;background:var(--red);color:#0b0b0d;
+  display:grid;place-items:center;font:900 26px var(--jp);transform:rotate(-6deg);z-index:3;box-shadow:0 12px 30px rgba(232,16,46,.45)}
+
+/* ticker */
+.ticker{border-block:1px solid var(--line);overflow:hidden;background:#0a0a0d;position:relative;z-index:1}
+.ticker-track{display:flex;width:max-content}
+@media (prefers-reduced-motion:no-preference){.ticker-track{animation:mq 32s linear infinite}}
+@keyframes mq{to{transform:translateX(-50%)}}
+.ticker span{padding:13px 18px;font:800 11px var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--mut);white-space:nowrap}
+.ticker span.tg{color:var(--red);padding:13px 6px}
+
+/* заголовки */
+.sec-head{margin-bottom:34px}
+h2{font:400 clamp(1.7rem,6.5vw,2.7rem) var(--disp);letter-spacing:.03em;margin-top:10px}
+.mask{overflow:hidden}.mask>span{display:block;transform:translateY(112%);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.rv.in .mask>span{transform:none}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+
+/* анкеты — свайп */
+.m-scroll{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 20px 20px;margin:0 -20px;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.m-scroll::-webkit-scrollbar{display:none}
+.m-card{flex:0 0 78%;max-width:320px;scroll-snap-align:center;background:var(--bg2);border:1px solid var(--line)}
+.m-card figure{position:relative;overflow:hidden;aspect-ratio:4/5}
+.m-card img{width:100%;height:100%;object-fit:cover;filter:contrast(1.1)}
+.m-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(232,16,46,.3),transparent 45%);opacity:.6;pointer-events:none}
+.m-tag{position:absolute;top:12px;left:12px;z-index:2;background:rgba(7,7,9,.72);border:1px solid rgba(232,16,46,.5);
+  color:var(--red);font:800 9.5px var(--body);letter-spacing:.2em;text-transform:uppercase;padding:6px 11px}
+.m-tag.hot{background:var(--red);color:#0b0b0d;border-color:var(--red)}
+.m-body{padding:18px 18px 20px}
+.m-body h3{font:400 1.25rem var(--disp);letter-spacing:.06em;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.m-body h3 em{font:600 11px var(--body);color:var(--gold);letter-spacing:.12em;font-style:normal;text-align:right}
+.m-meta{font:700 10px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin:7px 0 14px}
+.dots{display:flex;justify-content:center;gap:7px;margin-top:4px}
+.dot{width:6px;height:6px;border-radius:50%;background:#3a3532;transition:.35s;border:0;padding:0}
+.dot.on{background:var(--red);width:22px;border-radius:4px}
+
+/* тарифы */
+.rate{position:relative;display:grid;grid-template-columns:44px 1fr;gap:6px 16px;
+  padding:24px 14px;border-top:1px solid var(--line);cursor:pointer;transition:color .35s}
+.rate:last-of-type{border-bottom:1px solid var(--line)}
+.rate::before{content:'';position:absolute;inset:0;background:var(--red);transform:scaleY(0);transform-origin:bottom;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.rate:active::before{transform:scaleY(1)}
+.rate>*{position:relative;z-index:1}
+.rate-n{font:900 24px var(--jp);color:var(--red);align-self:start;padding-top:2px;transition:color .35s}
+.rate h3{font:400 1.15rem var(--disp);letter-spacing:.05em}
+.rate p{color:var(--mut);font-size:13px;margin-top:4px;transition:color .35s}
+.rate-meta{grid-column:1/-1;display:flex;align-items:center;gap:14px;margin-top:8px}
+.rate-meta span{font:700 9.5px var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--mut);transition:color .35s}
+.rate-meta strong{font:400 1.1rem var(--disp);color:var(--gold);margin-left:auto;transition:color .35s}
+.rate-arr{font-size:16px}
+.rate.lit::before{transform:scaleY(1)}
+.rate.lit{color:#14060a}
+.rate.lit .rate-n{color:#14060a}
+.rate.lit p,.rate.lit .rate-meta span{color:rgba(20,6,10,.75)}
+.rate.lit .rate-meta strong{color:#14060a}
+@media (hover:hover){.rate:hover::before{transform:scaleY(1)}}
+
+/* шаги */
+.steps{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.step{background:var(--bg2);padding:30px 24px;display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start}
+.step b{font:900 2.4rem/1 var(--jp);color:transparent;-webkit-text-stroke:1.5px var(--red)}
+.step h3{font:400 1.1rem var(--disp);letter-spacing:.05em;margin-bottom:8px}
+.step p{color:var(--mut);font-size:13.5px}
+.step p i{color:var(--gold);font-style:normal;font-weight:700}
+
+/* контакты */
+.c-note{color:var(--mut);margin:16px 0 24px;font-size:14px}
+.messengers{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.c-card{border:1px solid var(--line);background:var(--bg2);padding:38px 24px 28px;position:relative;text-align:center;margin-top:44px}
+.c-card::before{content:'夜';position:absolute;top:-26px;left:50%;transform:translateX(-50%) rotate(-4deg);
+  width:52px;height:52px;background:var(--red);color:#0b0b0d;display:grid;place-items:center;font:900 26px var(--jp);box-shadow:0 10px 26px rgba(232,16,46,.4)}
+.pulse-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--red);margin-right:8px}
+@media (prefers-reduced-motion:no-preference){.pulse-dot{animation:blink 1.6s infinite}}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(232,16,46,.5)}50%{opacity:.5;box-shadow:0 0 0 8px rgba(232,16,46,0)}}
+.c-card h3{font:400 1.2rem var(--disp);letter-spacing:.05em;margin-bottom:5px}
+.c-card .st{font:700 10px var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--mut);margin-bottom:20px}
+.c-row{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px solid var(--line);font-size:13px;text-align:left}
+.c-row span{color:var(--mut)}
+.c-card .btn{width:100%;margin-top:22px}
+
+/* футер */
+footer{border-top:1px solid var(--line);padding:36px 0 28px;background:#060608;position:relative;z-index:1}
+.f-top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+footer nav{display:flex;gap:18px;flex-wrap:wrap}
+footer nav a{font:700 10.5px var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+.f-fine{font-size:11.5px;color:#5f5854;line-height:1.7}
+.f-bottom{border-top:1px solid var(--line);margin-top:20px;padding-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  font:700 10px var(--body);letter-spacing:.18em;text-transform:uppercase;color:#5f5854}
+.f-bottom b{color:var(--red)}
+
+/* таб-бар */
+#tabbar{position:fixed;left:0;right:0;bottom:0;z-index:110;display:grid;grid-template-columns:repeat(5,1fr);
+  background:rgba(10,9,12,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid var(--line);padding:7px 4px calc(7px + var(--safe-b))}
+.tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:none;border:0;
+  color:var(--mut);font:800 9px var(--body);letter-spacing:.06em;text-transform:uppercase;padding:6px 0;transition:color .25s,transform .15s}
+.tab svg{width:21px;height:21px;stroke:currentColor}
+.tab:active{transform:scale(.88)}
+.tab.on{color:var(--red)}
+.tab-chat{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--mut);
+  font:800 9px var(--body);letter-spacing:.06em;text-transform:uppercase}
+.tab-chat .bubble{width:54px;height:54px;border-radius:50%;background:var(--red);color:#12060a;display:grid;place-items:center;
+  margin-top:-30px;box-shadow:0 10px 26px rgba(232,16,46,.5);border:4px solid var(--bg);transition:transform .15s}
+.tab-chat:active .bubble{transform:scale(.9)}
+.tab-chat svg{width:23px;height:23px;stroke:currentColor}
+@media (prefers-reduced-motion:no-preference){.tab-chat .bubble{animation:bob 3s ease-in-out infinite}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+#fab{display:none;position:fixed;right:24px;bottom:24px;z-index:120;width:60px;height:60px;border-radius:50%;border:0;
+  background:var(--red);color:#0d0508;place-items:center;transition:.3s}
+#fab:hover{transform:scale(1.08);background:var(--red-hi)}
+.fab-dot{position:absolute;top:2px;right:2px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--bg);display:none}
+#fab.fresh .fab-dot{display:block}
+
+/* чат */
+#chat{position:fixed;inset:0;z-index:121;background:#0b0b0f;display:flex;flex-direction:column;
+  transform:translateY(100%);transition:transform .45s cubic-bezier(.32,.9,.3,1)}
+#chat.open{transform:none}
+.grab{width:44px;height:4px;border-radius:2px;background:#3a3532;margin:8px auto 0}
+#chat header{display:flex;align-items:center;gap:12px;padding:10px 16px;
+  padding-top:calc(10px + var(--safe-t));border-bottom:1px solid var(--line);background:#0d0d12}
+#chat header img{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--red);object-fit:cover}
+#chat header strong{font:400 15px var(--disp);letter-spacing:.08em;display:block}
+#chat header .st{font:700 9px var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+#chat header .st i{color:var(--red);font-style:normal}
+#chatClose{margin-left:auto;background:none;border:0;color:var(--mut);font-size:26px;line-height:1;width:44px;height:44px}
+#chatClose:active{color:var(--red)}
+#chatBody{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch}
+.msg{max-width:84%;padding:11px 14px;font-size:15px;line-height:1.5;animation:msgIn .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.msg.bot{align-self:flex-start;background:#15151c;border:1px solid var(--line);border-radius:2px 14px 14px 14px}
+.msg.user{align-self:flex-end;background:var(--red);color:#160409;font-weight:600;border-radius:14px 2px 14px 14px}
+.msg.typing{display:flex;gap:5px;padding:15px 16px}
+.msg.typing span{width:6px;height:6px;border-radius:50%;background:var(--red)}
+@media (prefers-reduced-motion:no-preference){
+.msg.typing span{animation:tp 1s infinite}
+.msg.typing span:nth-child(2){animation-delay:.15s}
+.msg.typing span:nth-child(3){animation-delay:.3s}}
+@keyframes tp{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-5px);opacity:1}}
+#chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 12px;min-height:8px}
+#chips button{border:1px solid rgba(232,16,46,.5);background:rgba(232,16,46,.07);color:var(--red);
+  font:800 12px var(--body);padding:10px 15px;border-radius:100px;min-height:38px;transition:.25s}
+#chips button:active{background:var(--red);color:#0d0508}
+#chatForm{display:flex;border-top:1px solid var(--line);background:#0d0d12;padding-bottom:var(--safe-b)}
+#chatInput{flex:1;background:none;border:0;outline:0;color:var(--txt);font:500 16px var(--body);padding:15px 16px}
+#chatInput::placeholder{color:#5f5854}
+#chatForm button{width:56px;background:var(--red);border:0;color:#0d0508;font-size:17px}
+#chatForm button:active{background:var(--red-hi)}
+
+/* десктоп */
+@media (min-width:700px){
+  .g-btns{display:flex;justify-content:center}
+  .h-cta{display:flex;gap:14px}.h-cta .btn{width:auto}
+  .steps{grid-template-columns:repeat(3,1fr)}
+  .messengers{grid-template-columns:auto auto}
+}
+@media (min-width:900px){
+  body{padding-bottom:0}
+  header{background:transparent;backdrop-filter:none;border-bottom:0;transition:.35s}
+  header.scrolled{background:rgba(8,7,10,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{height:74px}
+  .nav-links{display:flex}
+  #tabbar{display:none}
+  #fab{display:grid}
+  section{padding:96px 0}
+  .wrap{padding:0 28px}
+  .hero{padding:calc(150px + var(--safe-t)) 0 70px;display:flex;align-items:center;min-height:88vh}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;width:100%}
+  .sun{width:460px;height:460px;top:6%;right:2%}
+  .h-cta{display:flex}
+  .hero-r{margin-top:0}
+  .kb img{aspect-ratio:3/3.8}
+  .m-scroll{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible;margin:0;padding:0}
+  .m-card{max-width:none}
+  .m-card img{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+  .m-card:hover img{transform:scale(1.07)}
+  .dots{display:none}
+  .rate{grid-template-columns:56px 1fr auto;gap:24px;align-items:center;padding:30px 18px}
+  .rate-meta{grid-column:auto;flex-direction:column;align-items:flex-end;gap:4px;margin:0;text-align:right}
+  .rate-meta strong{margin:0}
+  .c-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+  .c-card{margin-top:0}
+  #chat{inset:auto;top:auto;left:auto;right:22px;bottom:96px;width:min(376px,calc(100vw - 32px));height:min(560px,calc(100vh - 130px));
+    border:1px solid var(--line);border-top:2px solid var(--red);transform:translateY(18px) scale(.97);opacity:0;pointer-events:none;
+    box-shadow:0 34px 90px rgba(0,0,0,.65),0 0 40px rgba(232,16,46,.07);transition:.4s cubic-bezier(.2,.9,.3,1)}
+  #chat.open{transform:none;opacity:1;pointer-events:auto}
+  .grab{display:none}
+  #chat header{padding-top:13px}
+  #chatForm{padding-bottom:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+  .rv{opacity:1;transform:none}.mask>span{transform:none}
+}
+</style>
+</head>
+<body class="gated">
+
+<div class="noise" aria-hidden="true"></div>
+
+<!-- 18+ -->
+<div id="gate" role="dialog" aria-label="Подтверждение возраста">
+  <div class="g-box">
+    <span class="g-seal">縁</span>
+    <h2>Только 18+</h2>
+    <p>NOIR ASIA — закрытое бюро сопровождения. Подтвердите, что вам исполнилось 18 лет.</p>
+    <div class="g-btns">
+      <button class="btn" id="ageYes">Мне есть 18 — войти</button>
+      <button class="btn ghost" id="ageNo">Выйти</button>
+    </div>
+    <p class="g-fine">Вход анонимен: без трекеров и куки.</p>
+  </div>
+</div>
+
+<!-- шапка -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="logo" href="#hero">NOIR<b>·</b><i>ASIA</i></a>
+    <ul class="nav-links">
+      <li><a href="#models">Девушки</a></li>
+      <li><a href="#rates">Прайс</a></li>
+      <li><a href="#steps">Как это работает</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+    <button class="btn small" style="width:auto" data-bot="Здравствуйте! Хочу оформить заявку">Бронь</button>
+  </div>
+</header>
+
+<main>
+<!-- hero -->
+<section class="hero" id="hero">
+  <div class="sun" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="over">Премиальное сопровождение · 9 городов · 24/7</p>
+      <h1><span class="scr" data-text="АЗИЯ,">АЗИЯ,</span><br><span class="scr" data-text="ПОСЛЕ ЗАКАТА"><em>ПОСЛЕ ЗАКАТА</em></span></h1>
+      <p class="h-jp">夜の間だけ、あなたのものに</p>
+      <p class="h-sub">Проверенные спутницы в <b>Бангкоке, Токио, Сеуле и Сингапуре</b>. Деловые ужины, светские выходы и путешествия. Консьерж отвечает за минуты. Полная приватность.</p>
+      <div class="h-cta">
+        <button class="btn" data-bot="Здравствуйте! Хочу оформить заявку">Подобрать спутницу</button>
+        <a class="btn ghost" href="#models">Анкеты</a>
+      </div>
+    </div>
+    <div class="hero-r rv">
+      <figure class="frame kb">
+        <span class="seal" aria-hidden="true">縁</span>
+        <img src="https://picsum.photos/seed/noir-asia-muse/700/900?grayscale" alt="Спутница NOIR ASIA">
+        <figcaption><span>Юки · 23 · Токио</span><b>Свободна сегодня</b></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- бегущая строка -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tick"></div>
+</div>
+
+<!-- анкеты -->
+<section id="models">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="over">Каталог <span class="jp">· 花</span></span>
+      <h2 class="mask"><span>Лучшие сегодня</span></h2>
+    </div>
+  </div>
+  <div class="m-scroll rv" id="mScroll">
+    <article class="m-card">
+      <figure><img src="https://picsum.photos/seed/noir-yuki/600/760?grayscale" alt="Юки"><span class="m-tag hot">Сегодня</span></figure>
+      <div class="m-body"><h3>Юки <em>23 · Токио</em></h3><p class="m-meta">168 см · EN / JP · крыши и джаз-бары</p><button class="btn small" data-model="Юки">Выбрать Юки</button></div>
+    </article>
+    <article class="m-card">
+      <figure><img src="https://picsum.photos/seed/noir-meilin/600/760?grayscale" alt="Мэй Лин"><span class="m-tag">VIP</span></figure>
+      <div class="m-body"><h3>Мэй Лин <em>24 · Бангкок</em></h3><p class="m-meta">172 см · EN / CN / TH · высокая кухня</p><button class="btn small" data-model="Мэй Лин">Выбрать Мэй Лин</button></div>
+    </article>
+    <article class="m-card">
+      <figure><img src="https://picsum.photos/seed/noir-sooah/600/760?grayscale" alt="Су А"><span class="m-tag hot">Новая</span></figure>
+      <div class="m-body"><h3>Су А <em>25 · Сеул</em></h3><p class="m-meta">170 см · EN / KR · ночная жизнь</p><button class="btn small" data-model="Су А">Выбрать Су А</button></div>
+    </article>
+    <article class="m-card">
+      <figure><img src="https://picsum.photos/seed/noir-linh/600/760?grayscale" alt="Линь"><span class="m-tag">Гид</span></figure>
+      <div class="m-body"><h3>Линь <em>22 · Хошимин</em></h3><p class="m-meta">165 см · EN / VN · скрытые места города</p><button class="btn small" data-model="Линь">Выбрать Линь</button></div>
+    </article>
+    <article class="m-card">
+      <figure><img src="https://picsum.photos/seed/noir-aiko/600/760?grayscale" alt="Айко"><span class="m-tag">Поездки</span></figure>
+      <div class="m-body"><h3>Айко <em>26 · Осака</em></h3><p class="m-meta">174 см · EN / JP · поездки и события</p><button class="btn small" data-model="Айко">Выбрать Айко</button></div>
+    </article>
+    <article class="m-card">
+      <figure><img src="https://picsum.photos/seed/noir-hana/600/760?grayscale" alt="Хана"><span class="m-tag">VIP</span></figure>
+      <div class="m-body"><h3>Хана <em>24 · Сингапур</em></h3><p class="m-meta">171 см · EN / CN · гала и бизнес</p><button class="btn small" data-model="Хана">Выбрать Хану</button></div>
+    </article>
+  </div>
+  <div class="dots" id="dots" aria-hidden="true"></div>
+</section>
+
+<!-- прайс -->
+<section id="rates">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="over">Прайс <span class="jp">· 金</span> · USD</span>
+      <h2 class="mask"><span>Честные цены, без сюрпризов</span></h2>
+    </div>
+    <div class="rv">
+      <div class="rate" data-svc="Деловой ужин">
+        <span class="rate-n">一</span>
+        <div><h3>Деловой ужин</h3><p>Переговоры, день рождения, первое впечатление — она говорит на вашем языке.</p></div>
+        <div class="rate-meta"><span>3 часа</span><strong>от $250</strong><span class="rate-arr">→</span></div>
+      </div>
+      <div class="rate" data-svc="Вечер и ночная жизнь">
+        <span class="rate-n">二</span>
+        <div><h3>Вечер и ночная жизнь</h3><p>Клубы, секретные бары, крыши с видом — вечер, который запомнят.</p></div>
+        <div class="rate-meta"><span>5 часов</span><strong>от $400</strong><span class="rate-arr">→</span></div>
+      </div>
+      <div class="rate" data-svc="Вечер до утра">
+        <span class="rate-n">三</span>
+        <div><h3>Вечер до утра</h3><p>От ужина до рассвета. Неспешно, внимательно, деликатно.</p></div>
+        <div class="rate-meta"><span>12 часов</span><strong>от $750</strong><span class="rate-arr">→</span></div>
+      </div>
+      <div class="rate" data-svc="Спутница в путешествие">
+        <span class="rate-n">四</span>
+        <div><h3>Спутница в путешествие</h3><p>Острова, города, яхты — визы и логистику берём на себя.</p></div>
+        <div class="rate-meta"><span>в день</span><strong>от $950</strong><span class="rate-arr">→</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- шаги -->
+<section id="steps">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="over">Протокол <span class="jp">· 道</span></span>
+      <h2 class="mask"><span>Три шага до вечера</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step rv"><b>一</b><div><h3>Заявка</h3><p>Прямо здесь, в Telegram — через чат-консьержа. <i>Ответ за ~2 минуты</i>.</p></div></div>
+      <div class="step rv" style="--d:.1s"><b>二</b><div><h3>Подтверждение</h3><p>Небольшой депозит фиксирует время. Детали — в <i>приватном чате</i>.</p></div></div>
+      <div class="step rv" style="--d:.2s"><b>三</b><div><h3>Встреча</h3><p>Она приезжает <i>за 15 минут</i>. Всё остальное — ваш вечер.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- контакты -->
+<section id="contact">
+  <div class="wrap">
+    <div class="c-grid">
+      <div class="rv">
+        <span class="over">Консьерж · всегда на связи</span>
+        <h2 class="mask"><span>Напишите — ответим в любой час</span></h2>
+        <p class="c-note">Штаб в Бангкоке · 9 городов Азии. Без имён и документов. Оплата: наличные, перевод или крипта.</p>
+        <div class="messengers">
+          <button class="btn ghost" id="tgLink">Telegram</button>
+          <a class="btn ghost" href="#" onclick="return false">WhatsApp</a>
+          <a class="btn ghost" href="#" onclick="return false">LINE</a>
+          <a class="btn ghost" href="#" onclick="return false">WeChat</a>
+        </div>
+      </div>
+      <div class="c-card rv" style="--d:.12s">
+        <h3><span class="pulse-dot"></span>Консьерж Мэй</h3>
+        <p class="st">онлайн · отвечает за ~2 мин</p>
+        <div class="c-row"><span>Города</span><b>9 по Азии</b></div>
+        <div class="c-row"><span>Подача в городе</span><b>от 90 минут</b></div>
+        <div class="c-row"><span>Языки</span><b>EN · местные · RU</b></div>
+        <div class="c-row"><span>Приватность</span><b>NDA · шифрование</b></div>
+        <button class="btn" data-bot="Здравствуйте! Кто свободен сегодня?">Открыть чат с консьержем</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <a class="logo" href="#hero">NOIR<b>·</b><i>ASIA</i></a>
+      <nav><a href="#models">Девушки</a><a href="#rates">Прайс</a><a href="#steps">Как это работает</a><a href="#contact">Контакты</a></nav>
+    </div>
+    <p class="f-fine">NOIR ASIA — бюро сопровождения и организации досуга. Все спутницы совершеннолетни. Оказываются только услуги сопровождения на мероприятия, ужины и в путешествиях. Интимные услуги не оказываются и не предлагаются.</p>
+    <div class="f-bottom">
+      <span>© 2026 NOIR ASIA</span>
+      <span><b>18+</b> · Бангкок · Токио · Сеул · Сингапур</span>
+    </div>
+  </div>
+</footer>
+
+<!-- таб-бар -->
+<nav id="tabbar" aria-label="Главное меню">
+  <a class="tab on" href="#hero" data-tab="hero"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 10.5 12 3l9 7.5V21h-6v-6h-6v6H3z"/></svg>Главная</a>
+  <a class="tab" href="#models" data-tab="models"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>Девушки</a>
+  <button class="tab-chat" id="tabChat" aria-label="Открыть чат">
+    <span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.8-.3-4-.9L3 21l1.9-5.5a8.5 8.5 0 1 1 16.1-4z"/></svg></span>Чат
+  </button>
+  <a class="tab" href="#rates" data-tab="rates"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 9h6M9 12h6M9 15h4" transform="translate(3,0)"/><path d="M4 6h16v12H4z"/></svg>Прайс</a>
+  <a class="tab" href="#contact" data-tab="contact"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Контакты</a>
+</nav>
+
+<button id="fab" class="fresh" aria-label="Открыть чат">
+  <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.8-.3-4-.9L3 21l1.9-5.5a8.5 8.5 0 1 1 16.1-4z"/></svg>
+  <span class="fab-dot"></span>
+</button>
+
+<!-- чат -->
+<section id="chat" aria-label="Чат с консьержем">
+  <span class="grab" aria-hidden="true"></span>
+  <header>
+    <img src="https://picsum.photos/seed/noir-concierge-mei/80/80" alt="Мэй">
+    <div><strong>Мэй · Консьерж</strong><span class="st"><i>●</i> онлайн · 24/7</span></div>
+    <button id="chatClose" aria-label="Закрыть чат">×</button>
+  </header>
+  <div id="chatBody"></div>
+  <div id="chips"></div>
+  <form id="chatForm" autocomplete="off">
+    <input id="chatInput" type="text" placeholder="Напишите сообщение…" maxlength="300" enterkeyhint="send">
+    <button type="submit" aria-label="Отправить">➤</button>
+  </form>
+</section>
+
+<script>
+(function(){
+"use strict";
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = s => document.querySelector(s), $$ = s => document.querySelectorAll(s);
+
+/* ===== Telegram WebApp ===== */
+const tg = window.Telegram && window.Telegram.WebApp;
+let inTG = false, tgUser = null;
+function haptic(s){ if(inTG){ try{ tg.HapticFeedback.impactOccurred(s); }catch(e){} } }
+function hapticOk(){ if(inTG){ try{ tg.HapticFeedback.notificationOccurred('success'); }catch(e){} } }
+
+if (tg && tg.initData) {
+  inTG = true;
+  try {
+    tg.ready(); tg.expand();
+    tg.setHeaderColor('#08070a');
+    tg.setBackgroundColor('#08070a');
+    tgUser = (tg.initDataUnsafe && tg.initDataUnsafe.user) || null;
+    if (tg.MainButton) {
+      try { tg.MainButton.setParams({text:'ПОДОБРАТЬ СПУТНИЦУ · ОТ $250', color:'#e8102e', text_color:'#ffffff', is_visible:true}); }
+      catch(e){ tg.MainButton.setText('ПОДОБРАТЬ СПУТНИЦУ'); tg.MainButton.show(); }
+      tg.MainButton.onClick(function(){ openChat(); haptic('medium'); });
+    }
+    if (tg.BackButton) tg.BackButton.onClick(function(){ closeChat(); });
+  } catch(e){}
+}
+$('#tgLink').onclick = () => {
+  if (inTG && tg.openTelegramLink) tg.openTelegramLink('https://t.me/noirasia');
+  else window.open('https://t.me/noirasia','_blank');
+};
+
+/* 18+ */
+const gate = $('#gate');
+if (localStorage.getItem('noir_age') === 'ok') { gate.remove(); document.body.classList.remove('gated'); }
+else {
+  $('#ageYes').onclick = () => { localStorage.setItem('noir_age','ok'); gate.classList.add('out');
+    document.body.classList.remove('gated'); setTimeout(()=>gate.remove(),650); runScramble(); haptic('light'); };
+  $('#ageNo').onclick = () => { gate.querySelector('.g-box').innerHTML =
+    '<span class="g-seal">縁</span><h2>Доступ ограничен</h2><p style="color:var(--mut)">Сайт только для совершеннолетних.<br>Возвращайтесь позже.</p>'; };
+}
+
+/* шапка */
+const hdr = $('#hdr');
+addEventListener('scroll', ()=>hdr.classList.toggle('scrolled', scrollY>30), {passive:true});
+
+/* бегущая строка */
+const cities = ['Бангкок','Токио','Сеул','Сингапур','Хошимин','Бали','Куала-Лумпур','Манила','Осака'];
+$('#tick').innerHTML = Array(2).fill(cities.map(c=>`<span>${c}</span><span class="tg">✦</span>`).join('')).join('');
+
+/* скрэмбл */
+const CHARS='夜✦§%#@&$01花';
+function scrambleEl(el,dur=1000){
+  const fin=[...el.dataset.text]; let f=0; const total=Math.round(dur/30);
+  const t=setInterval(()=>{ f++;
+    el.textContent = fin.map((ch,i)=> ch===' '?' ':(i/fin.length<f/total?ch:CHARS[Math.random()*CHARS.length|0])).join('');
+    if(f>=total){ el.textContent=el.dataset.text; clearInterval(t);} },30);
+}
+function runScramble(){
+  const els=$$('.scr');
+  if(RM){ els.forEach(e=>e.textContent=e.dataset.text); return; }
+  els.forEach((e,i)=>setTimeout(()=>scrambleEl(e),300+i*420));
+}
+
+/* появление */
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} }),{threshold:.15});
+$$('.rv').forEach(el=>io.observe(el));
+
+/* активный таб */
+const tabs={hero:'[data-tab="hero"]',models:'[data-tab="models"]',rates:'[data-tab="rates"]',contact:'[data-tab="contact"]'};
+const tabIO=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    $$('.tab').forEach(t=>t.classList.remove('on'));
+    const sel=tabs[e.target.id]; if(sel){ const t=$(sel); if(t) t.classList.add('on'); }
+  }
+}),{rootMargin:'-40% 0px -50% 0px'});
+Object.keys(tabs).forEach(id=>{ const s=document.getElementById(id); if(s) tabIO.observe(s); });
+
+/* точки карусели */
+const sc=$('#mScroll'), dotsWrap=$('#dots');
+const cards=[...sc.children];
+cards.forEach((_,i)=>{ const d=document.createElement('button'); d.className='dot'+(i===0?' on':''); d.setAttribute('aria-hidden','true'); dotsWrap.appendChild(d); });
+const dots=[...dotsWrap.children];
+let ticking=false;
+sc.addEventListener('scroll',()=>{ if(ticking) return; ticking=true;
+  requestAnimationFrame(()=>{ ticking=false;
+    const w=cards[0].offsetWidth+14;
+    const i=Math.max(0,Math.min(cards.length-1,Math.round(sc.scrollLeft/w)));
+    dots.forEach((d,j)=>d.classList.toggle('on',j===i));
+  });
+},{passive:true});
+
+/* подсветка тарифа по тапу */
+$$('.rate').forEach(r=>{
+  r.addEventListener('touchstart',()=>r.classList.add('lit'),{passive:true});
+  r.addEventListener('touchend',()=>setTimeout(()=>r.classList.remove('lit'),400),{passive:true});
+});
+
+/* ===== БОТ «МЭЙ» ===== */
+const chat=$('#chat'), fab=$('#fab'), body=$('#chatBody'), chips=$('#chips'), input=$('#chatInput');
+let greeted=false, state='idle', order={}, pending=null;
+
+function openChat(){ chat.classList.add('open'); fab.classList.remove('fresh'); document.body.classList.add('lock');
+  if(inTG){ try{ tg.MainButton.hide(); tg.BackButton.show(); }catch(e){} }
+  if(!greeted){ greeted=true;
+    const hello = tgUser && tgUser.first_name ? `Привет, ${tgUser.first_name} ✦` : 'Привет ✦';
+    botSay(`${hello} Я Мэй, консьерж бюро NOIR ASIA 🌸 Помогу с выбором и оформлю бронь за минуту. С чего начнём?`,
+      ['💎 Прайс','📅 Оформить','🏙 Города','🔒 Приватность']);
+  }
+  setTimeout(()=>input.focus(),450);
+}
+function closeChat(){ if(!chat.classList.contains('open')) return;
+  chat.classList.remove('open'); document.body.classList.remove('lock'); input.blur();
+  if(inTG){ try{ tg.MainButton.show(); tg.BackButton.hide(); }catch(e){} }
+}
+fab.onclick=()=>chat.classList.contains('open')?closeChat():openChat();
+$('#tabChat').onclick=()=>{ openChat(); haptic('light'); };
+$('#chatClose').onclick=closeChat;
+
+function scrollDown(){ body.scrollTop=body.scrollHeight; }
+function addMsg(text,who){ const d=document.createElement('div'); d.className='msg '+who;
+  d.innerHTML=text.replace(/\n/g,'<br>'); body.appendChild(d); scrollDown(); }
+function botSay(text,chipList){
+  const tp=document.createElement('div'); tp.className='msg bot typing';
+  tp.innerHTML='<span></span><span></span><span></span>'; body.appendChild(tp); scrollDown();
+  const delay=RM?80:Math.min(1400,420+text.length*10);
+  setTimeout(()=>{ tp.remove(); addMsg(text,'bot'); if(chipList) setChips(chipList); },delay);
+}
+function setChips(arr){ chips.innerHTML='';
+  (arr||[]).forEach(c=>{ const b=document.createElement('button'); b.textContent=c; b.onclick=()=>sendMessage(c); chips.appendChild(b); }); }
+function cap(s){ s=s.trim(); return s.charAt(0).toUpperCase()+s.slice(1); }
+
+function startOrder(){ state='city'; order={};
+  botSay('Отлично ✦ В каком городе будет встреча?',['Бангкок','Токио','Сеул','Сингапур','Другой город']); }
+
+function respond(raw){
+  const t=raw.toLowerCase();
+
+  if(pending){ const p=pending; pending=null;
+    botSay(p.type==='model' ? `${p.name} — прекрасный выбор, одна из самых востребованных анкет ✦ Оформим встречу?`
+                            : `«${p.name}» — отличный формат ✦ Подберу девушку под ваш вечер.`);
+    setTimeout(startOrder, RM?120:900); return; }
+
+  if(state!=='idle'){
+    if(state==='city'){ order.city=cap(raw); state='when';
+      botSay(`Принято: ${order.city} ✦ Когда удобно?`,['Сегодня','Завтра','На выходных']); return; }
+    if(state==='when'){ order.when=cap(raw); state='handle';
+      if (tgUser && tgUser.username){
+        botSay(`Вижу вас в Telegram как @${tgUser.username} ✦ Подтвердить этот контакт для связи?`,['Да, @'+tgUser.username,'Другой контакт']);
+      } else {
+        botSay('Почти готово ✦ Оставьте ваш @ник в Telegram или номер — консьерж подтвердит бронь за пару минут. Данные зашифрованы 🔒');
+      }
+      return; }
+    if(state==='handle'){
+      if(/другой контакт/.test(t)){ botSay('Хорошо, напишите другой @ник или номер.'); return; }
+      let h=raw.replace(/^да,\s*/i,'').trim();
+      if(h.length>2){
+        if(!h.startsWith('@') && !/\d/.test(h)) h='@'+h;
+        order.contact=h; state='idle'; hapticOk();
+        botSay(`Заявка принята ✦\n• Город: ${order.city}\n• Время: ${order.when}\n• Контакт: ${order.contact}\n\nКонсьерж напишет в течение 5 минут. Дискреция гарантирована 🌙`,['Прайс','Новая бронь']);
+      } else botSay('Слишком коротко 🙂 Напишите @ник или номер телефона.');
+      return; }
+  }
+
+  if(/брон|заявк|заказ|заброниров|оформить|встреч|сегодня вечером|новая бронь/.test(t)){ startOrder(); return; }
+  if(/прайс|цена|стоимост|сколько|тариф/.test(t)){
+    botSay('Коротко по прайсу 💎\n• Деловой ужин (3 ч) — от $250\n• Вечер и ночная жизнь (5 ч) — от $400\n• Вечер до утра (12 ч) — от $750\n• Спутница в путешествие — от $950/день\n\nДепозит при брони, остальное при встрече. Наличные, перевод или крипта.',
+      ['📅 Оформить','🏙 Города']); return; }
+  if(/город|города|выезд|куда|гео|стран/.test(t)){
+    botSay('Мы в 9 городах 🏙\nБангкок · Токио · Сеул · Сингапур · Хошимин · Бали · Куала-Лумпур · Манила · Осака\n\nПереезд между городами — от 24 часов ✈️',['📅 Оформить']); return; }
+  if(/приватн|аноним|ндс|нда|безопас|данные|секрет/.test(t)){
+    botSay('Приватность — наша основа 🔒\n• Настоящее имя не нужно\n• Только шифрованные каналы\n• Фото анкет закрытые, нигде не публикуются\n• 0 утечек за 9 лет',['📅 Оформить','Прайс']); return; }
+  if(/девушк|анкет|каталог|модел|блондин|брюнет|показать каталог/.test(t)){
+    if(/показать каталог/.test(t)){ closeChat(); $('#models').scrollIntoView({behavior:RM?'auto':'smooth'}); return; }
+    botSay('В каталоге 60+ проверенных анкет — назовите город и настроение, и я подберу 3 идеальных варианта 🌸',['Показать каталог','Подобрать за меня']); return; }
+  if(/подобрать за меня/.test(t)){ startOrder(); return; }
+  if(/оплат|крипт|карт|наличн|депозит/.test(t)){
+    botSay('Оплата простая 💳 депозит фиксирует бронь, остальное — при встрече. Наличные, перевод или крипта (USDT). Без карт и следов.',
+      ['📅 Оформить']); return; }
+  if(/язык|английск|говор/.test(t)){
+    botSay('Все девушки говорят по-английски 🌏 Многие также владеют китайским, японским, корейским или вьетнамским — скажите, что нужно.',
+      ['📅 Оформить']); return; }
+  if(/привет|здравств|добрый|хай|добрый вечер/.test(t)){
+    botSay('Добрый вечер ✦ Рада вас слышать. Подобрать девушку или сразу спланируем вечер?',
+      ['💎 Прайс','📅 Оформить','🏙 Города']); return; }
+  if(/спасибо|отлично|круто|супер|красив/.test(t)){
+    botSay('Всегда пожалуйста ✦ Жду вашу заявку — вечер ещё молод 🌙',['📅 Оформить']); return; }
+
+  botSay('Помогу с бронью, прайсом и городами — или просто подберу девушку под настроение 🙂',['📅 Оформить','💎 Прайс','🏙 Города','🔒 Приватность']);
+}
+function sendMessage(text){ text=(text||'').trim(); if(!text) return;
+  addMsg(text,'user'); setChips([]); haptic('light'); respond(text); }
+$('#chatForm').onsubmit=e=>{ e.preventDefault(); sendMessage(input.value); input.value=''; };
+
+/* кнопки сайта → бот */
+$$('[data-bot]').forEach(b=>b.onclick=()=>{ openChat(); setTimeout(()=>sendMessage(b.dataset.bot), RM?100:420); });
+$$('[data-model]').forEach(b=>b.onclick=e=>{ e.stopPropagation(); pending={type:'model',name:b.dataset.model}; openChat(); haptic('light');
+  setTimeout(()=>sendMessage(`Хочу выбрать ${b.dataset.model}`), RM?100:420); });
+$$('.rate').forEach(row=>row.addEventListener('click',()=>{ pending={type:'svc',name:row.dataset.svc}; openChat(); haptic('light');
+  setTimeout(()=>sendMessage(`Интересует формат: ${row.dataset.svc}`), RM?100:420); }));
+})();
+</script>
+</body>
+</html>
